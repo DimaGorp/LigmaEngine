@@ -1,3 +1,4 @@
+/*
 #include "glad/glad.h"
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -102,7 +103,7 @@ int main()
     ConfigureGLFW();
     GLFWwindow* window;
     
-    /* Create a windowed mode window and its OpenGL context */
+    //Create a windowed mode window and its OpenGL context 
     window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
     if (!window)
     {
@@ -110,7 +111,7 @@ int main()
         return -1;
     }
     
-    /* Make the window's context current */
+    //Make the window's context current
     glfwMakeContextCurrent(window);
     
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
@@ -197,11 +198,11 @@ int main()
 
 
     glClearColor(0, .25, 0, 1);
-    /* Loop until the user closes the window */
+    //Loop until the user closes the window
     while (!glfwWindowShouldClose(window))
     {
         processInput(window);
-        /* Render here */
+        //Render here 
         glClear(GL_COLOR_BUFFER_BIT);
         
         // Bind VAO and draw the square
@@ -209,10 +210,10 @@ int main()
         glBindVertexArray(VAO);
         //glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
         glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
-        /* Swap front and back buffers */
+        //S wap front and back buffers
         glfwSwapBuffers(window);
 
-        /* Poll for and process events */
+        //Poll for and process events
         glfwPollEvents();
     }
     glDeleteVertexArrays(1, &VAO);
@@ -223,5 +224,27 @@ int main()
     glDeleteProgram(ProgramId);
     glfwDestroyWindow(window);
     glfwTerminate();
+    return 0;
+}
+*/
+
+
+#include <iostream>
+#include <Core/Core.hpp>
+
+
+template<int n>
+struct fact{
+    enum{result = n * fact<n-1>::result};
+};
+template<>
+struct fact<0>{
+    enum {result = 1};
+};
+
+
+int main(){
+    
+    std::cout << fact<3>::result<<std::endl;
     return 0;
 }
